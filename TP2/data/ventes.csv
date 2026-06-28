@@ -1,0 +1,6 @@
+id,produit,ville,prix,quantite,date
+1,Ordinateur,Casablanca,8500,2,2026-05-01
+2,Souris,Rabat,120,10,2026-05-01
+3,Clavier,Marrakech,250,5,2026-05-02
+4,Ecran,Tanger,1800,3,2026-05-03
+5,Imprimante,Fes,2300,1,2026-05-04

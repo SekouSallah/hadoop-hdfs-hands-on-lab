@@ -1,0 +1,112 @@
+{
+  "info": {
+    "name": "Atelier MinIO - Travail de synthese",
+    "description": "TP MinIO - Bucket mini-projet-storage",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "endpoint", "value": "http://localhost:9000", "type": "string" },
+    { "key": "bucket", "value": "mini-projet-storage", "type": "string" }
+  ],
+  "auth": {
+    "type": "awsv4",
+    "awsv4": [
+      { "key": "accessKey", "value": "minioadmin", "type": "string" },
+      { "key": "secretKey", "value": "minioadmin123", "type": "string" },
+      { "key": "region", "value": "us-east-1", "type": "string" },
+      { "key": "service", "value": "s3", "type": "string" }
+    ]
+  },
+  "item": [
+    {
+      "name": "Phase 1 - Creation du bucket",
+      "item": [
+        {
+          "name": "PUT - Creer mini-projet-storage",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{endpoint}}/{{bucket}}", "host": ["{{endpoint}}"], "path": ["{{bucket}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 2 - Upload des fichiers",
+      "item": [
+        {
+          "name": "PUT - ventes/ventes.csv",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{endpoint}}/{{bucket}}/ventes/ventes.csv", "host": ["{{endpoint}}"], "path": ["{{bucket}}", "ventes", "ventes.csv"] },
+            "body": { "mode": "binary" }
+          }
+        },
+        {
+          "name": "PUT - clients/clients.json",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{endpoint}}/{{bucket}}/clients/clients.json", "host": ["{{endpoint}}"], "path": ["{{bucket}}", "clients", "clients.json"] },
+            "body": { "mode": "binary" }
+          }
+        },
+        {
+          "name": "PUT - logs/application.log",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{endpoint}}/{{bucket}}/logs/application.log", "host": ["{{endpoint}}"], "path": ["{{bucket}}", "logs", "application.log"] },
+            "body": { "mode": "binary" }
+          }
+        },
+        {
+          "name": "PUT - produits/produit.txt",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{endpoint}}/{{bucket}}/produits/produit.txt", "host": ["{{endpoint}}"], "path": ["{{bucket}}", "produits", "produit.txt"] },
+            "body": { "mode": "binary" }
+          }
+        },
+        {
+          "name": "PUT - documents/ventes.csv",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{endpoint}}/{{bucket}}/documents/ventes.csv", "host": ["{{endpoint}}"], "path": ["{{bucket}}", "documents", "ventes.csv"] },
+            "body": { "mode": "binary" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 3 - Operations sur les objets",
+      "item": [
+        {
+          "name": "GET - Lister tous les objets",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{endpoint}}/{{bucket}}?list-type=2", "host": ["{{endpoint}}"], "path": ["{{bucket}}"], "query": [{ "key": "list-type", "value": "2" }] }
+          }
+        },
+        {
+          "name": "GET - Telecharger clients.json",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{endpoint}}/{{bucket}}/clients/clients.json", "host": ["{{endpoint}}"], "path": ["{{bucket}}", "clients", "clients.json"] }
+          }
+        },
+        {
+          "name": "HEAD - Metadata application.log",
+          "request": {
+            "method": "HEAD",
+            "url": { "raw": "{{endpoint}}/{{bucket}}/logs/application.log", "host": ["{{endpoint}}"], "path": ["{{bucket}}", "logs", "application.log"] }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer produit.txt",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{endpoint}}/{{bucket}}/produits/produit.txt", "host": ["{{endpoint}}"], "path": ["{{bucket}}", "produits", "produit.txt"] }
+          }
+        }
+      ]
+    }
+  ]
+}

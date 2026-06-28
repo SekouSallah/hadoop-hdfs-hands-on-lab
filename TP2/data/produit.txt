@@ -1,0 +1,4 @@
+Nom produit : Ordinateur portable
+Categorie : Informatique
+Prix : 8500 DH
+Stock : 25
